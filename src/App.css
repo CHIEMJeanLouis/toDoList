@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  gap: 100px;
+}
+
+.header h1 {
+  font-family: Verdana;
+  padding-left: 500px;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.darkBody {
+  background-color: #313131;
+}
+
+.container {
+  height: 80vh;
+}
+
+.mode {
+  padding-right: 200px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lightMode {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px lightgrey solid;
+  background-color: white;
+  cursor: pointer;
+}
+
+.darkMode {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px lightgrey solid;
+  background-color: black;
+  cursor: pointer;
+}
+
+.task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.dark {
+  height: 100%;
+  background-color: rgb(49, 49, 49);
+  color: beige;
+}
+
+.input {
+  width: 400px;
+}
+
+.addButton {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: green;
+}
+
+.line {
+  text-decoration: line-through;
+}
+
+.main {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
