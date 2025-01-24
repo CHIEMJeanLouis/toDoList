@@ -10,6 +10,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
   const [mode, setMode] = useState("");
+  const [search, setSearch] = useState("");
 
   const handleSubmit = () => {
     const newTab = [...tasks];
@@ -23,7 +24,9 @@ function App() {
   const handleStatus = (index) => {
     const newTab = [...tasks];
     newTab[index].status = !newTab[index].status;
-    setTasks(newTab);
+    //trier avec sort en fonction si le tache est cochée ou non.
+    const sortedTasks = newTab.sort((a, b) => a.status - b.status);
+    setTasks(sortedTasks);
   };
 
   const handleDelete = (index) => {
@@ -40,28 +43,46 @@ function App() {
       <div className="container">
         <div className={mode ? "dark" : null}>
           <div>
-            {tasks.map((task, index) => {
-              return (
-                <div key={index} className="task">
-                  <input
-                    checked={task.status ? true : false}
-                    type="checkbox"
-                    onChange={() => {
-                      handleStatus(index);
-                    }}
-                  />
-                  <span className={task.status && "line"}>{task.title}</span>
-                  {task.status && (
-                    <button onClick={() => handleDelete(index)}>Delete</button>
-                  )}
-                </div>
-              );
-            })}
+            <div className="inputSearch">
+              <input
+                className="input"
+                type="text"
+                placeholder="Rechercher une tâche..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+
+            {tasks
+              .filter((task) =>
+                task.title.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((task, index) => {
+                return (
+                  <div key={index} className="task">
+                    <input
+                      checked={task.status ? true : false}
+                      type="checkbox"
+                      onChange={() => {
+                        handleStatus(index);
+                      }}
+                    />
+                    <span className={task.status && "line"}>{task.title}</span>
+
+                    {task.status && (
+                      <button onClick={() => handleDelete(index)}>
+                        Delete
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
           </div>
           <div className="main">
             <input
               className="input"
               type="text"
+              placeholder="Ajoutez une tâche"
               value={input}
               onChange={(e) => {
                 setInput(e.target.value);
